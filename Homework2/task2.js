@@ -1,6 +1,6 @@
 // 2) Write a function that takes an array of numbers and reverses the order of its elements using a loop. Don't use reverse(). e.g: [1,2,3] => [3,2,1]
 
-function ReverseArray(arr) {
+function reverseArray(arr) {
     const reversed = [];
 
     for(let i=0; i<arr.length; i++) {
@@ -10,4 +10,4 @@ function ReverseArray(arr) {
     return reversed;
 }
 
-console.log(ReverseArray([1,2,3]));
+console.log(reverseArray([1,2,3]));

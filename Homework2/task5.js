@@ -1,6 +1,6 @@
 // 5) Write a function that takes an array of strings and returns the new array with the palindrome words. palindrome words are level, becase if you reverse this word its the same, like madam.  e.g: ['level', 'giga', 'ana', 'button', 'abba'] => ['level', 'ana', 'abba']
 
-function PalindromeWords(arr) {
+function palindromeWords(arr) {
     const palindromes = [];
 
     for(let i=0; i<arr.length; i++) {
@@ -16,4 +16,4 @@ function PalindromeWords(arr) {
     return palindromes;
 }
 
-console.log(PalindromeWords(['level', 'giga', 'ana', 'button', 'abba']));
+console.log(palindromeWords(['level', 'giga', 'ana', 'button', 'abba']));

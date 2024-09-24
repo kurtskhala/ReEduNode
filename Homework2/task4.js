@@ -1,6 +1,6 @@
 // 4) Write a function that counts the total number of characters in all the strings in an array. e.g:["a", "ab", "abc"] => 6
 
-function NumberOfChars(arr) {
+function numberOfChars(arr) {
     let count = 0;
 
     for(let i=0; i<arr.length; i++) {
@@ -10,4 +10,4 @@ function NumberOfChars(arr) {
     return count;
 }
 
-console.log(NumberOfChars(["a", "ab", "abc"]));
+console.log(numberOfChars(["a", "ab", "abc"]));

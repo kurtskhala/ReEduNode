@@ -1,6 +1,6 @@
 // 1) Create a function that counts the Number of Digits in Each Element, e.g: [123, 45, 6] becomes [3, 2, 1]).
 
-function CountNumOfDigits(arr) {
+function countNumOfDigits(arr) {
     const countedArr = [];
 
     for(let i=0; i<arr.length; i++) {
@@ -10,4 +10,4 @@ function CountNumOfDigits(arr) {
     return countedArr;
 }
 
-console.log(CountNumOfDigits([123, 45, 6]));
+console.log(countNumOfDigits([123, 45, 6]));
