@@ -1,0 +1,23 @@
+{
+  "name": "homework13",
+  "version": "1.0.0",
+  "description": "",
+  "main": "cars-cli.js",
+  "type": "module",
+  "bin": {
+    "weather-cli": "weather-cli.js",
+    "cars-cli": "cars-cli.js"
+  },
+  "scripts": {
+    "cars": "node cars-cli.js",
+    "weather": "node weather-cli.js",
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "dependencies": {
+    "commander": "^12.1.0",
+    "node-fetch": "^3.3.2"
+  }
+}
