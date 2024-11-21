@@ -1,7 +1,10 @@
 import { Router } from "express";
 import {
+  addExpense,
   createExpense,
   deleteExpenseById,
+  editExpense,
+  expenseDetiles,
   getAllExpenses,
   getExpenseById,
   updateExpenseById,
@@ -11,6 +14,12 @@ import { areRequiredFieldsPresent } from "../../midlewares/areRequiredFieldsPres
 const expensesRouter = Router();
 
 expensesRouter.get("/", getAllExpenses);
+
+expensesRouter.get("/expense/:id", expenseDetiles);
+
+expensesRouter.get("/add", addExpense);
+
+expensesRouter.get("/edit/:id", editExpense);
 
 expensesRouter.post("/", areRequiredFieldsPresent, createExpense);
 

@@ -1,0 +1,32 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link rel="stylesheet" href="/css/styles.css" />
+    <title>Document</title>
+  </head>
+  <body>
+    <a href="/expenses/add">
+        <button>Add New Expense</button>
+    </a>
+    <div class="conainer">
+      <% expenses.forEach(expense => { %>
+      <div class="card">
+        <h2><%= expense.id %></h2>
+        <h2>category: <%= expense.category %></h2>
+        <h2>price: <%= expense.price %></h2>
+        <div>
+          <a href="/expenses/expense/<%= expense.id %>">Show more</a>
+          <button onclick="handleDelete('<%= expense.id %>')">Delete</button>
+          <a href="/expenses/edit/<%= expense.id %>">
+            <button>Edit</button>
+          </a>
+        </div>
+      </div>
+      <% }) %>
+
+      <script src="/js/delete.js"></script>
+    </div>
+  </body>
+</html>
