@@ -1,10 +1,11 @@
+import { Request, Response } from "express";
 import { expenseModel } from "../../models/expense.js";
 import mongoose from "mongoose";
 
-export const getAllExpenses = async (req, res) => {
+export const getAllExpenses = async (req: Request, res: Response) => {
   let { page = 1, take = 10 } = req.query;
-  page = parseInt(page, 10);
-  take = parseInt(take, 10);
+  page = parseInt(page as string, 10);
+  take = Math.min(parseInt(take as string, 10), 10);
 
   take = Math.min(take, 10);
 
@@ -26,7 +27,7 @@ export const getAllExpenses = async (req, res) => {
   // }
 };
 
-export const createExpense = async (req, res) => {
+export const createExpense = async (req: Request, res: Response) => {
   const { category, price } = req.body;
 
   const user = await expenseModel.create({ category, price });
@@ -54,7 +55,7 @@ export const createExpense = async (req, res) => {
   // }
 };
 
-export const addExpense = async (req, res) => {
+export const addExpense = async (req: Request, res: Response) => {
   try {
     res.render("pages/addExpense.ejs");
   } catch (error) {
@@ -62,7 +63,7 @@ export const addExpense = async (req, res) => {
   }
 };
 
-export const editExpense = async (req, res) => {
+export const editExpense = async (req: Request, res: Response) => {
   try {
     res.render("pages/editExpense.ejs");
   } catch (error) {
@@ -70,15 +71,17 @@ export const editExpense = async (req, res) => {
   }
 };
 
-export const expenseDetiles = async (req, res) => {
+export const expenseDetiles = async (req: Request, res: Response) => {
   const { id } = req.params;
   if (!id || !mongoose.Types.ObjectId.isValid(id)) {
-    return res.status(400).json({ error: "Invalid expense ID provided" });
+    res.status(400).json({ error: "Invalid expense ID provided" });
+    return;
   }
   const expense = await expenseModel.findById(id);
 
   if (!expense) {
-    return res.status(404).json({ error: "Expense not found" });
+    res.status(404).json({ error: "Expense not found" });
+    return;
   }
 
   res.render("pages/expenseDetiles.ejs", { expense });
@@ -99,7 +102,7 @@ export const expenseDetiles = async (req, res) => {
   // }
 };
 
-export const getExpenseById = async (req, res) => {
+export const getExpenseById = async (req: Request, res: Response) => {
   const { id } = req.params;
   if (!mongoose.isValidObjectId(id)) {
     res.status(400).json({ message: "wrong mongodb id is provided" });
@@ -108,7 +111,7 @@ export const getExpenseById = async (req, res) => {
 
   const expense = await expenseModel.findById(id);
   if (!expense) {
-    res.status(404).res.json({ message: "not found" });
+    res.status(404).json({ message: "not found" });
   }
 
   res.json(expense);
@@ -128,11 +131,12 @@ export const getExpenseById = async (req, res) => {
   // }
 };
 
-export const updateExpenseById = async (req, res) => {
-  const { id } = req.params;
+export const updateExpenseById = async (req: Request, res: Response) => {
+  const { id } = req.params as { id: string };
 
   if (!mongoose.isValidObjectId(id)) {
-    return res.status(400).json({ message: "Invalid MongoDB ID provided" });
+    res.status(400).json({ message: "Invalid MongoDB ID provided" });
+    return;
   }
 
   const updatedExpense = await expenseModel.findByIdAndUpdate(id, req.body, {
@@ -140,9 +144,8 @@ export const updateExpenseById = async (req, res) => {
   });
 
   if (!updatedExpense) {
-    return res
-      .status(404)
-      .json({ message: "Expense not found or not updated" });
+    res.status(404).json({ message: "Expense not found or not updated" });
+    return;
   }
 
   res
@@ -175,7 +178,7 @@ export const updateExpenseById = async (req, res) => {
   // }
 };
 
-export const deleteExpenseById = async (req, res) => {
+export const deleteExpenseById = async (req: Request, res: Response) => {
   const { id } = req.params;
   if (!mongoose.isValidObjectId(id)) {
     res.status(400).json({ message: "wrong mongodb id is provided" });

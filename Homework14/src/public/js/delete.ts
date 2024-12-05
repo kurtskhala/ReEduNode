@@ -1,4 +1,4 @@
-const handleDelete = async (id) => {
+const handleDelete = async (id : string) => {
   const res = await fetch(`http://localhost:4000/expenses/${id}`, {
     method: "DELETE",
     headers: {

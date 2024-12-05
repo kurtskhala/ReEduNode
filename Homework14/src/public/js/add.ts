@@ -1,6 +1,7 @@
-const form = document.querySelector("form");
+const addForm = document.querySelector("form") as HTMLFormElement;
 
-form.addEventListener("submit", async (e) => {
+
+addForm.addEventListener("submit", async (e: SubmitEvent) => {
   e.preventDefault();
   const category = form.category.value;
   const price = form.price.value;
